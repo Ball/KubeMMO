@@ -47,6 +47,30 @@
       "name": "Release App (services/hello)",
       "program": "${workspaceFolder:KubeMMO}/services/hello/.build/release/App",
       "preLaunchTask": "swift: Build Release App (services/hello)"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "sourceLanguages": [
+        "swift"
+      ],
+      "args": [],
+      "cwd": "${workspaceFolder:KubeMMO}/services/monster",
+      "name": "Debug App (services/monster)",
+      "program": "${workspaceFolder:KubeMMO}/services/monster/.build/debug/App",
+      "preLaunchTask": "swift: Build Debug App (services/monster)"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "sourceLanguages": [
+        "swift"
+      ],
+      "args": [],
+      "cwd": "${workspaceFolder:KubeMMO}/services/monster",
+      "name": "Release App (services/monster)",
+      "program": "${workspaceFolder:KubeMMO}/services/monster/.build/release/App",
+      "preLaunchTask": "swift: Build Release App (services/monster)"
     }
   ]
 }
