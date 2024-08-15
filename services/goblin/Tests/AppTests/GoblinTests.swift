@@ -19,11 +19,11 @@ final class GoblinTests: XCTestCase {
 
   func testHitGoblin() async throws {
     let hit = DamageReport(damage: 8, source: "Player")
-    try await self.app.test(.POST, "/hit", beforeRequest: { req in
-      try req.content.encode(hit)
-    }, afterResponse: { res in
+    try await self.app.test(.POST, "/hit", beforeRequest: { req async in
+      try! req.content.encode(hit)
+    }, afterResponse: { res async in
       XCTAssertEqual(res.status,.ok)
-      let hit = try res.content.decode(HitResult.self)
+      let hit = try! res.content.decode(HitResult.self)
       XCTAssertEqual( hit.damageReport.damage, 8)
       XCTAssertEqual(hit.status.health, 2)
     })
@@ -34,21 +34,21 @@ final class GoblinTests: XCTestCase {
 
     await Goblin.shared.restoreHealth()
 
-    try await self.app.test(.GET, "/status", afterResponse: { res in
+    try await self.app.test(.GET, "/status", afterResponse: { res async in
       XCTAssertEqual(res.status,.ok)
-      let info = try res.content.decode(CreatureStatus.self)
+      let info = try! res.content.decode(CreatureStatus.self)
       XCTAssertEqual( "Goblin", info.name)
       XCTAssertEqual( 10, info.health)
     })
   }
 
   func testKillGoblin() async throws {
-    try await self.app.test(.DELETE, "/kill", afterResponse: { res in
+    try await self.app.test(.DELETE, "/kill", afterResponse: { res async in
       XCTAssertEqual(res.status,.ok)
     })
-    try await self.app.test(.GET, "/status", afterResponse: { res in
+    try await self.app.test(.GET, "/status", afterResponse: { res async in
       XCTAssertEqual(res.status,.ok)
-      let info = try res.content.decode(CreatureStatus.self)
+      let info = try! res.content.decode(CreatureStatus.self)
       XCTAssertEqual( "Goblin", info.name)
       XCTAssertEqual( 0, info.health)
     })

@@ -6,16 +6,15 @@ func routes(_ app: Application) throws {
 
     app.on( .POST, "hit") { req -> HitResult in
         let hit = try! req.content.decode(DamageReport.self)
-        return Goblin.shared.hit(hit: hit)
-        // return HitResult(damageReport: DamageReport(damage: 8, source: "player"), status: CreatureStatus(name: "Goblin", health: 2, description: "green and angry"))
+        return await Goblin.shared.hit(hit: hit)
     }
 
     app.get("status"){req in
-        return Goblin.shared.status()
+        return await Goblin.shared.status()
     }
 
     app.on(.DELETE, "kill"){req in
-        Goblin.shared.kill()
+        await Goblin.shared.kill()
         return ""
     }
 
