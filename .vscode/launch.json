@@ -1,0 +1,52 @@
+{
+  "configurations": [
+    {
+      "type": "lldb",
+      "request": "launch",
+      "sourceLanguages": [
+        "swift"
+      ],
+      "args": [],
+      "cwd": "${workspaceFolder:KubeMMO}/services/goblin",
+      "name": "Debug App (services/goblin)",
+      "program": "${workspaceFolder:KubeMMO}/services/goblin/.build/debug/App",
+      "preLaunchTask": "swift: Build Debug App (services/goblin)"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "sourceLanguages": [
+        "swift"
+      ],
+      "args": [],
+      "cwd": "${workspaceFolder:KubeMMO}/services/goblin",
+      "name": "Release App (services/goblin)",
+      "program": "${workspaceFolder:KubeMMO}/services/goblin/.build/release/App",
+      "preLaunchTask": "swift: Build Release App (services/goblin)"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "sourceLanguages": [
+        "swift"
+      ],
+      "args": [],
+      "cwd": "${workspaceFolder:KubeMMO}/services/hello",
+      "name": "Debug App (services/hello)",
+      "program": "${workspaceFolder:KubeMMO}/services/hello/.build/debug/App",
+      "preLaunchTask": "swift: Build Debug App (services/hello)"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "sourceLanguages": [
+        "swift"
+      ],
+      "args": [],
+      "cwd": "${workspaceFolder:KubeMMO}/services/hello",
+      "name": "Release App (services/hello)",
+      "program": "${workspaceFolder:KubeMMO}/services/hello/.build/release/App",
+      "preLaunchTask": "swift: Build Release App (services/hello)"
+    }
+  ]
+}
