@@ -1,0 +1,70 @@
+openapi: '3.0.3'
+info:
+  title: Kube MMO Monster
+  version: '1.0'
+servers:
+  - url: https://api.server.test/v1
+paths:
+  /hit:
+    post:
+      requestBody:
+        description: "..."
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HitResult'
+      responses:
+        '200':
+          description: OK
+  /status:
+    get:
+      requestBody:
+        description: "..."
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatureStatus'
+      responses:
+        '200':
+          description: OK
+  /kill:
+    delete:
+      requestBody:
+        description: "..."
+        content:
+          application/json:
+            schema:
+              type: string
+              example: ""
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    CreatureStatus:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Dragon"
+        health:
+          type: integer
+          example: 100
+        description:
+          type: string
+    DamageReport:
+      type: object
+      properties:
+        damage:
+          type: integer
+          example: 100
+        source:
+          type: string
+          example: "Sword"
+    HitResult:
+      type: object
+      properties:
+        damageReport:
+          $ref: '#/components/schemas/DamageReport'
+        status:
+          $ref: '#/components/schemas/CreatureStatus'

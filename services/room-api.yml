@@ -1,0 +1,155 @@
+openapi: '3.0.3'
+info:
+  title: Kube MMO Room
+  version: '1.0'
+servers:
+  - url: https://api.server.test/v1
+
+paths:
+  /info:
+    get:
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/roomInfo'
+  /enter:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/player'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/roomInfo'
+  /spawn:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/monster'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/roomInfo'
+  /drop:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/item'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/roomInfo'
+  /leave:
+    delete:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/player'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/roomInfo'
+  /despawn:
+    delete:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/monster'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/roomInfo'
+  /take:
+    delete:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/item'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/roomInfo'
+  /close:
+    description: "..."
+  /hit:
+    description: "..."
+
+components:
+  schemas:
+    item:
+      type: object
+      description: "An item that has fallen to the ground"
+      properties:
+        name:
+          type: string
+          example: "Pie"
+    player:
+      type: object
+      description: "A breif description of a player that can be used to call api actions against it"
+      properties:
+        name:
+          type: string
+          example: "Gronk"
+        endpoint:
+          type: string
+          description: "a url to the player's endpoint"
+          example: "connector1/p/Gronk"
+    monster:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Orc"
+        endpoint:
+          type: string
+          description: "a url to the monster's endpoint"
+          example: "orc4"
+    roomInfo:
+      type: object
+      properties:
+        description:
+          type: string
+          example: "A simple 5x5 room.  The walls are lined with emptied shelves."
+        name:
+          type: string
+          example: "Larder"
+        items:
+          $ref: '#/components/schemas/item'
+        players:
+          type: array
+          items:
+            $ref: '#/components/schemas/player'
+        monsters:
+          type: array
+          items:
+            $ref: '#/components/schemas/monster'
