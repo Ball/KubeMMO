@@ -17,6 +17,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build
-      run: ls -1 services | xargs -I {} swift build -v --package-path services/{}
+      run: ls -1d services/*/ | xargs -I {} swift build -v --package-path services/{}
     - name: Run tests
-      run: ls -1 services | xargs -I {} swift test -v --package-path services/{}
+      run: ls -1d services/*/ | xargs -I {} swift test -v --package-path services/{}
